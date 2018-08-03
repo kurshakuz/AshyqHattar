@@ -1,0 +1,35 @@
+{
+  "name": "TestProj",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "firebase": "^5.3.0",
+    "react": "16.3.1",
+    "react-native": "0.55.4",
+    "react-native-gridview": "^0.1.2",
+    "react-native-paper": "^1.11.1",
+    "react-native-share": "1.0.27",
+    "react-native-vector-icons": "^5.0.0",
+    "react-navigation": "^2.10.0",
+    "request": "^2.87.0",
+    "rn-fetch-blob": "^0.10.12"
+  },
+  "devDependencies": {
+    "babel-jest": "23.4.2",
+    "babel-preset-react-native": "4.0.0",
+    "jest": "23.4.2",
+    "react-test-renderer": "16.3.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
+  }
+}

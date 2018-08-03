@@ -1,0 +1,43 @@
+const searchInput = navigation.getParam("searchInput", null);
+
+  
+  if (searchInput) {
+      try {
+        const CSE_ID = "003431346712572998009:usbgxwggbhw";
+        const CSE_API_KEY = "AIzaSyA_8S6iO7-0PQ184n2lNSF1OXLGxbxPeGc";
+        const query = searchInput;
+
+        console.log(query);
+        const response = await fetch(
+          `https://www.googleapis.com/customsearch/v1?q=${query}&cx=${CSE_ID}&searchType=image&key=${CSE_API_KEY}`
+        );
+        const result = await response.json();
+        await this.setState({ data: result, isLoading: false });
+      } catch (error) {
+        console.log("error", error);
+      }
+  
+  
+  renderPhotos = () => {
+    return (
+      <GridView
+        data={this.state.data.items}
+        itemsPerRow={3}
+        renderItem={listItem => (
+          <TouchableOpacity onPress={() => this.viewImage(listItem.link)}>
+            <Image
+              style={{ height: 120, width: 120 }}
+              source={{ uri: listItem.link }}
+            />
+          </TouchableOpacity>
+        )}
+      />
+    );
+  };
+
+
+  if (this.state.text) {
+      this.props.navigation.navigate("SearchDetails", {
+        searchInput: this.state.text
+      });
+    }
