@@ -1,7 +1,14 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Image,
+  Button
+} from "react-native";
 import RNFetchBlob from "rn-fetch-blob";
-import Share, { ShareSheet, Button } from "react-native-share";
+import Share, { ShareSheet } from "react-native-share";
 
 class CardDetailsScreen extends React.Component {
   static navigationOptions = () => {
@@ -21,37 +28,51 @@ class CardDetailsScreen extends React.Component {
     };
   };
 
-  onClick = photoUrl => {
-    RNFetchBlob.config({
-      // add this option that makes response data to be stored as a file,
-      // this is much more performant.
-      fileCache: true
-    })
-      .fetch("GET", photoUrl, {
-        //some headers ..
-      })
-      .then(res => {
-        // the temp file path
-        console.log("The file saved to ", res.path());
-      });
+  state = {
+    loading: false
   };
+
+  _downloadImageAndShare(title, message, url) {
+    this.setState({ loading: true });
+
+    var self = this;
+
+    RNFetchBlob.config({ fileCache: true })
+      .fetch("GET", url)
+      .then(resp => {
+        console.log("here start ", resp.path());
+        return resp.readFile("base64").then(base64 => {
+          //   console.log("base64", base64);
+          return { resp, base64 };
+        });
+      })
+      .then(obj => {
+        var headers = obj.resp.respInfo.headers;
+        var type = headers["Content-Type"];
+        var dataUrl = "data:" + type + ";base64," + obj.base64;
+        return { title, message, url: dataUrl };
+      })
+      .then(opts => {
+        self.setState({ loading: false });
+
+        console.log("final opts: ", opts);
+
+        Share.open(opts);
+      })
+      .catch(err => {
+        self.setState({ loading: false });
+        console.log(err);
+      });
+  }
+
+  constructor(props) {
+    super(props);
+    this._downloadImageAndShare = this._downloadImageAndShare.bind(this);
+  }
 
   render() {
     const { navigation } = this.props;
     const photoUrl = navigation.getParam("url", null);
-
-    // let shareOptions = {
-    //   title: "Share",
-    //   url: photoUrl,
-    //   type: "image/jpg",
-    //   // message: "Here it is",
-    //   subject: "Share Link" // for email,
-    // };
-
-    let shareOptions = {
-      title: "React Native",
-      url: photoUrl
-    };
 
     return (
       <View style={styles.mainContainer}>
@@ -63,7 +84,20 @@ class CardDetailsScreen extends React.Component {
           }}
         />
 
-        <TouchableOpacity
+        <Button
+          color="#FFC820"
+          disabled={this.state.loading}
+          onPress={() =>
+            this._downloadImageAndShare(
+              "Ашық хат",
+              "Бұл сурет Ashyq Hattar қосымшасынан алынған",
+              photoUrl
+            )
+          }
+          title={this.state.loading ? "Суретті жүктеу..." : "Суретпен бөлісу"}
+        />
+
+        {/* <TouchableOpacity
           onPress={() => {
             Share.open(shareOptions);
           }}
@@ -71,22 +105,7 @@ class CardDetailsScreen extends React.Component {
           <View style={styles.instructions}>
             <Text>Simple Share Image Base 64</Text>
           </View>
-        </TouchableOpacity>
-
-        {/* <Button
-          iconSrc={{ uri: WHATSAPP_ICON }}
-          onPress={() => {
-            setTimeout(() => {
-              Share.shareSingle(
-                Object.assign(shareOptions, {
-                  social: "whatsapp"
-                })
-              );
-            }, 300);
-          }}
-        >
-          Whatsapp
-        </Button> */}
+        </TouchableOpacity> */}
       </View>
     );
   }
