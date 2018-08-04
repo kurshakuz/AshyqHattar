@@ -32,7 +32,8 @@ class WelcomeScreen extends React.Component {
   };
 
   goToCreateCard = () => {
-    console.log("Pressed");
+    // console.log("Pressed");
+    this.props.navigation.navigate("Temp");
   };
 
   render() {

@@ -10,6 +10,7 @@
     "firebase": "^5.3.0",
     "react": "16.3.1",
     "react-native": "0.55.4",
+    "react-native-fs": "^2.10.14",
     "react-native-gridview": "^0.1.2",
     "react-native-paper": "^1.11.1",
     "react-native-share": "1.0.27",

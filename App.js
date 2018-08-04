@@ -7,6 +7,7 @@ import WelcomeScreen from "./Screens/WelcomeScreen";
 import SearchScreen from "./Screens/SearchScreen";
 import SearchDetailsScreen from "./Screens/SearchDetailsScreen";
 import CardDetailsScreen from "./Screens/CardDetailsScreen";
+import TempScreen from "./Screens/TempScreen";
 
 const RootStack = createStackNavigator(
   {
@@ -31,6 +32,15 @@ const RootStack = createStackNavigator(
     },
     CardDetails: {
       screen: CardDetailsScreen,
+      navigationOptions: {
+        headerStyle: {
+          elevation: 0,
+          shadowOpacity: 0
+        }
+      }
+    },
+    Temp: {
+      screen: TempScreen,
       navigationOptions: {
         headerStyle: {
           elevation: 0,
