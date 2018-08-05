@@ -7,7 +7,8 @@ import {
   TouchableOpacity,
   Image,
   FlatList,
-  Dimensions
+  Dimensions,
+  StatusBar
 } from "react-native";
 import firebase from "../firebase";
 
@@ -94,6 +95,8 @@ class SearchScreen extends React.Component {
 
     return (
       <View style={styles.pageContainer}>
+        <StatusBar backgroundColor="#000000" />
+
         <View style={styles.searchContainer}>
           <TextInput
             style={styles.searchText}

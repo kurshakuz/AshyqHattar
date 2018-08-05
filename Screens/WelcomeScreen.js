@@ -52,7 +52,7 @@ class WelcomeScreen extends React.Component {
                 onPress={this.goToSearch}
               />
             </View>
-            <View style={styles.secContrainer}>
+            {/* <View style={styles.secContrainer}>
               <Text style={styles.additionalText}>
                 Немесе өзің жеке дизайнды құрастыру!
               </Text>
@@ -61,7 +61,7 @@ class WelcomeScreen extends React.Component {
                 title="Жасау!"
                 onPress={this.goToCreateCard}
               />
-            </View>
+            </View> */}
           </View>
         </ImageBackground>
       </View>
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
   mainText: {
     color: "white",
     fontFamily: "Montserrat-Regular",
-    fontSize: 36,
+    fontSize: 40,
     marginBottom: 20
   },
   additionalText: {

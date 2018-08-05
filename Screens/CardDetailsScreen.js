@@ -1,5 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  StatusBar,
+  Dimensions
+} from "react-native";
 import RNFetchBlob from "rn-fetch-blob";
 import Share from "react-native-share";
 
@@ -63,6 +71,8 @@ class CardDetailsScreen extends React.Component {
 
     return (
       <View style={styles.mainContainer}>
+        <StatusBar backgroundColor="#000000" />
+
         <Image
           style={styles.image}
           resizeMode="contain"
@@ -71,18 +81,20 @@ class CardDetailsScreen extends React.Component {
           }}
         />
 
-        <Button
-          color="#FF473A"
-          disabled={this.state.loading}
-          onPress={() =>
-            this._downloadImageAndShare(
-              "Ашық хат",
-              "Бұл сурет Ashyq Hattar қосымшасынан алынған",
-              photoUrl
-            )
-          }
-          title={this.state.loading ? "Суретті жүктеу..." : "Суретпен бөлісу"}
-        />
+        <View style={styles.buttonContainer}>
+          <Button
+            color="#FF473A"
+            disabled={this.state.loading}
+            onPress={() =>
+              this._downloadImageAndShare(
+                "Ашық хат",
+                "Бұл сурет Ashyq Hattar қосымшасынан алынған",
+                photoUrl
+              )
+            }
+            title={this.state.loading ? "Суретті жүктеу..." : "Суретпен бөлісу"}
+          />
+        </View>
       </View>
     );
   }
@@ -109,8 +121,6 @@ const styles = StyleSheet.create({
   },
   mainContainer: {
     flex: 1,
-    // alignItems: "center",
-    // justifyContent: "center",
     backgroundColor: "white"
   },
   image: {
@@ -121,6 +131,12 @@ const styles = StyleSheet.create({
   instructions: {
     marginTop: 20,
     marginBottom: 20
+  },
+  buttonContainer: {
+    position: "absolute",
+    bottom: 20,
+    width: 200,
+    left: Dimensions.get("window").width / 2 - 100
   }
 });
 

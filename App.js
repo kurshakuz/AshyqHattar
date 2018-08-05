@@ -1,12 +1,14 @@
-import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { StatusBar } from "react-native";
 import { createStackNavigator } from "react-navigation";
-import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
+import { Provider as PaperProvider } from "react-native-paper";
 
 import WelcomeScreen from "./Screens/WelcomeScreen";
 import SearchScreen from "./Screens/SearchScreen";
 import SearchDetailsScreen from "./Screens/SearchDetailsScreen";
 import CardDetailsScreen from "./Screens/CardDetailsScreen";
+
+console.disableYellowBox = true;
 
 const RootStack = createStackNavigator(
   {
@@ -16,7 +18,8 @@ const RootStack = createStackNavigator(
       navigationOptions: {
         headerStyle: {
           elevation: 0,
-          shadowOpacity: 0
+          shadowOpacity: 0,
+          marginTop: StatusBar.currentHeight
         }
       }
     },
@@ -25,7 +28,8 @@ const RootStack = createStackNavigator(
       navigationOptions: {
         headerStyle: {
           elevation: 0,
-          shadowOpacity: 0
+          shadowOpacity: 0,
+          marginTop: StatusBar.currentHeight
         }
       }
     },
@@ -34,7 +38,8 @@ const RootStack = createStackNavigator(
       navigationOptions: {
         headerStyle: {
           elevation: 0,
-          shadowOpacity: 0
+          shadowOpacity: 0,
+          marginTop: StatusBar.currentHeight
         }
       }
     }

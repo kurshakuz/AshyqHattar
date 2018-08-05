@@ -5,7 +5,8 @@ import {
   View,
   Dimensions,
   TouchableOpacity,
-  Image
+  Image,
+  StatusBar
 } from "react-native";
 import GridView from "react-native-gridview";
 
@@ -57,15 +58,19 @@ class SearchDetailsScreen extends React.Component {
 
   renderPhotos = () => {
     return (
-      <GridView
-        data={this.state.links}
-        itemsPerRow={3}
-        renderItem={listItem => (
-          <TouchableOpacity onPress={() => this.viewImage(listItem)}>
-            <Image style={styles.imageSquare} source={{ uri: listItem }} />
-          </TouchableOpacity>
-        )}
-      />
+      <View>
+        <StatusBar backgroundColor="#000000" />
+
+        <GridView
+          data={this.state.links}
+          itemsPerRow={3}
+          renderItem={listItem => (
+            <TouchableOpacity onPress={() => this.viewImage(listItem)}>
+              <Image style={styles.imageSquare} source={{ uri: listItem }} />
+            </TouchableOpacity>
+          )}
+        />
+      </View>
     );
   };
 
