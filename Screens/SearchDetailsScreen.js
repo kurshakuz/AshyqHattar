@@ -3,7 +3,7 @@ import {
   StyleSheet,
   Text,
   View,
-  Button,
+  Dimensions,
   TouchableOpacity,
   Image
 } from "react-native";
@@ -62,10 +62,7 @@ class SearchDetailsScreen extends React.Component {
         itemsPerRow={3}
         renderItem={listItem => (
           <TouchableOpacity onPress={() => this.viewImage(listItem)}>
-            <Image
-              style={{ height: 120, width: 120 }}
-              source={{ uri: listItem }}
-            />
+            <Image style={styles.imageSquare} source={{ uri: listItem }} />
           </TouchableOpacity>
         )}
       />
@@ -102,6 +99,10 @@ const styles = StyleSheet.create({
     width: 45,
     height: 40,
     marginRight: 10
+  },
+  imageSquare: {
+    width: Dimensions.get("window").width / 3,
+    height: Dimensions.get("window").width / 3
   }
 });
 

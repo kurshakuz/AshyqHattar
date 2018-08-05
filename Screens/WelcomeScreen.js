@@ -1,5 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View, Button, ImageBackground } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  ImageBackground,
+  Dimensions,
+  StatusBar
+} from "react-native";
 
 class WelcomeScreen extends React.Component {
   static navigationOptions = {
@@ -22,6 +30,8 @@ class WelcomeScreen extends React.Component {
   render() {
     return (
       <View>
+        <StatusBar translucent backgroundColor="rgba(0, 0, 0, 0.24)" animated />
+
         <ImageBackground
           source={require("../assets/bkgrd.jpg")}
           style={{ width: "100%", height: "100%" }}
@@ -68,11 +78,11 @@ const styles = StyleSheet.create({
   },
   firContainer: {
     flex: 1,
-    width: 270,
+    width: Dimensions.get("window").width - Dimensions.get("window").width / 3,
     justifyContent: "center"
   },
   textContainer: {
-    width: 220
+    width: Dimensions.get("window").width - Dimensions.get("window").width / 2
   },
   mainText: {
     color: "white",
@@ -88,7 +98,7 @@ const styles = StyleSheet.create({
   },
   secContrainer: {
     marginBottom: 50,
-    width: 270,
+    width: Dimensions.get("window").width - Dimensions.get("window").width / 3,
     justifyContent: "center"
   }
 });

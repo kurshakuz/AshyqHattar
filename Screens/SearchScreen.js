@@ -6,7 +6,8 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  FlatList
+  FlatList,
+  Dimensions
 } from "react-native";
 import firebase from "../firebase";
 
@@ -170,17 +171,18 @@ const styles = StyleSheet.create({
   },
   previewContainer: {
     flex: 1,
+    marginHorizontal: 10,
+    marginVertical: 2,
     alignItems: "center",
-    minWidth: 170,
-    maxWidth: 180,
-    height: 170,
-    maxHeight: 170
+    width: Dimensions.get("window").width / 2 - 20,
+    height: Dimensions.get("window").height / 4.5
   },
   previewImage: {
-    width: 165,
-    height: 125
+    width: Dimensions.get("window").width / 2,
+    height: Dimensions.get("window").height / 4.5 - 40
   },
   previewText: {
+    width: Dimensions.get("window").width / 2 - 40,
     textAlign: "center",
     fontSize: 14,
     fontFamily: "Montserrat-Regular"
