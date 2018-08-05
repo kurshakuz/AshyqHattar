@@ -7,7 +7,6 @@ import WelcomeScreen from "./Screens/WelcomeScreen";
 import SearchScreen from "./Screens/SearchScreen";
 import SearchDetailsScreen from "./Screens/SearchDetailsScreen";
 import CardDetailsScreen from "./Screens/CardDetailsScreen";
-import TempScreen from "./Screens/TempScreen";
 
 const RootStack = createStackNavigator(
   {
@@ -38,15 +37,6 @@ const RootStack = createStackNavigator(
           shadowOpacity: 0
         }
       }
-    },
-    Temp: {
-      screen: TempScreen,
-      navigationOptions: {
-        headerStyle: {
-          elevation: 0,
-          shadowOpacity: 0
-        }
-      }
     }
   },
   {
@@ -65,22 +55,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
-  }
-});

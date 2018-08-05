@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Image,
-  Button,
-  ImageBackground
-} from "react-native";
-// import { AppLoading, Font } from "expo";
+import { StyleSheet, Text, View, Button, ImageBackground } from "react-native";
 
 class WelcomeScreen extends React.Component {
   static navigationOptions = {
@@ -20,20 +11,12 @@ class WelcomeScreen extends React.Component {
     this.state = { loading: true };
   }
 
-  // async componentWillMount() {
-  //   await Font.loadAsync({
-  //     "Montserrat-Regular": require("../assets/fonts/Montserrat/Montserrat-Regular.ttf")
-  //   });
-  //   this.setState({ loading: false });
-  // }
-
   goToSearch = () => {
     this.props.navigation.navigate("Search");
   };
 
   goToCreateCard = () => {
-    // console.log("Pressed");
-    this.props.navigation.navigate("Temp");
+    console.log("Pressed");
   };
 
   render() {
