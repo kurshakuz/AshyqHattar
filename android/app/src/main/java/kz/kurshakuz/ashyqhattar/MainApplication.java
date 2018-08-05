@@ -1,4 +1,4 @@
-package com.testproj;
+package kz.kurshakuz.ashyqhattar;
 
 import android.app.Application;
 
